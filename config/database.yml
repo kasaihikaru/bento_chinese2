@@ -52,3 +52,4 @@ production:
   database: bento_chinese2_production
   username: bento_chinese2
   password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
