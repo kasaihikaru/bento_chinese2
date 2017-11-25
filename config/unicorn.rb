@@ -7,10 +7,10 @@ worker_processes 1
 # stderr_path "#{app_path}/shared/log/unicorn.stderr.log"
 # stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
 
-working_directory "~/work/bento_chinese2"
-pid "~/work/bento_chinese2/tmp/pids/unicorn.pid"
-stderr_path "~/work/bento_chinese2/log/unicorn.stderr.log"
-stdout_path "~/work/bento_chinese2/log/unicorn.stdout.log"
+working_directory "/home/ec2-user/work/bento_chinese2"
+pid "/home/ec2-user/work/bento_chinese2/tmp/pids/unicorn.pid"
+stderr_path "/home/ec2-user/work/bento_chinese2/log/unicorn.stderr.log"
+stdout_path "/home/ec2-user/work/bento_chinese2/log/unicorn.stdout.log"
 
 listen 3000
 timeout 60
@@ -25,23 +25,23 @@ before_fork do |server, worker|
   defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.connection.disconnect!
 
-    if run_once
-      run_once = false # prevent from firing again
-    end
-
-    old_pid = "#{server.config[:pid]}.oldbin"
-
-    if File.exist?(old_pid) && server.pid != old_pid
-      begin
-        sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
-        Process.kill(sig, File.read(old_pid).to_i)
-
-      rescue Errno::ENOENT, Errno::ESRCH => e
-        logger.error e
-      end
-    end
+  if run_once
+    run_once = false # prevent from firing again
   end
 
-  after_fork do |_server, _worker|
-    defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
+  old_pid = "#{server.config[:pid]}.oldbin"
+
+  if File.exist?(old_pid) && server.pid != old_pid
+    begin
+      sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
+      Process.kill(sig, File.read(old_pid).to_i)
+
+    rescue Errno::ENOENT, Errno::ESRCH => e
+      logger.error e
+    end
   end
+end
+
+after_fork do |_server, _worker|
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
+end
