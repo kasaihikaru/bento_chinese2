@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+  <% if sentence.like_user(current_user.id) %>
+    <%= link_to sentence_like_path(sentence_id: sentence.id, id:like.id ), id: "unlike-button",method: :delete, remote: true do %>
+      <%= image_tag("r-heart.png") %>
+      <span>
+        <%= sentence.likes_count %>
+      </span>
+    <% end %>
+  <% else %>
+    <%= link_to sentence_likes_path(sentence.id), id: "like-button", method: :post, remote: true do %>
+      <%= image_tag("w-heart.png") %>
+      <span>
+        <%= sentence.likes_count %>
+      </span>
+    <% end %>
+  <% end %>
+<% end %>

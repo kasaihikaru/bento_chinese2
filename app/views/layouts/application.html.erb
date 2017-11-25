@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+
+		<!-- For SEO -->
+		<meta name="keywords" content="中国語学習, 中国語会話, 瞬間作文">
+		<meta name="description" content="">
+
+
+		<!-- For title -->
+		<title>BENTO Chinese || 瞬間作文ができる中国語学習サイト</title>
+		<!--    <link rel="icon" type="image/png" href="<#%= asset_path "logo_transparent.png" %>"> -->
+
+
+		<!-- preset -->
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+
+  <body>
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+<!-- ########   ナビバー   ########## -->
+			<header class="mdl-layout__header">
+		    <div class="mdl-layout__header-row">
+		      <!-- Title -->
+		      <a href="/"><img alt="BENTO Chinese" src="/assets/logo.png" class="nav-logo-img"></a>
+		      <!-- Add spacer, to align navigation to the right -->
+		      <div class="mdl-layout-spacer"></div>
+		      <!-- Navigation. We hide it in small screens. -->
+		      <nav class="mdl-navigation mdl-layout--large-screen-only">
+		        <a class="mdl-navigation__link " href="/abouts">About</a>
+		        <% if user_signed_in? %>
+		        	<a class="mdl-navigation__link" href="/users/<%= current_user.id %>">MyBento</a>
+		        	<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'mdl-navigation__link' %>
+		        <% else %>
+		        	<%= link_to "ログイン", new_user_session_path, class: 'mdl-navigation__link' %>
+              <%= link_to "新規登録", new_user_registration_path, class: 'mdl-navigation__link' %>
+		        <% end %>
+		      </nav>
+		    </div>
+			</header>
+			<div class="mdl-layout__drawer">
+		    <a href="/"><img alt="BENTO Chinese" src="/assets/logo.png" class="nav-logo-img-inner"></a>
+		    <nav class="mdl-navigation">
+		    	<a class="mdl-navigation__link" href="/abouts">About</a>
+	        <% if user_signed_in? %>
+	        	<a class="mdl-navigation__link" href="/users/<%= current_user.id %>">MyBento</a>
+	        	<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'mdl-navigation__link' %>
+	        <% else %>
+	        	<%= link_to "ログイン", new_user_session_path, class: 'mdl-navigation__link' %>
+            <%= link_to "新規登録", new_user_registration_path, class: 'mdl-navigation__link' %>
+	        <% end %>
+		    </nav>
+			</div>
+
+
+
+<!-- ########   ボディー   ########## -->
+			<main class="c-primary mdl-layout__content">
+				<div class="contents">
+					<%= yield %>
+				</div>
+			</main>
+
+
+<!-- ########   フッターなし  ########## -->
+		</div>
+  </body>
+</html>

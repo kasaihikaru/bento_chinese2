@@ -1,0 +1,62 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+////////////// ユーザー紹介カード ////////////
+.profile{
+	padding: 30px;
+}
+
+		.p-name{
+			font-size: 30px;
+			font-weight: 600;
+			height: 30px;
+		}
+
+		.p-img{
+			margin: 5px 0 15px;
+		}
+
+
+.f-menu{
+	padding: 8px 5px 20px 5px;
+}
+
+		.create-fold{
+
+		}
+
+				.newbox{
+					font-size: 14px;
+					height: 20px;
+					width: 63%;
+				}
+
+				.f-c-btn{
+					color: white;
+				}
+
+				.f-list{
+					list-style: none;
+					padding: 0;
+					margin-top: 15px;
+				}
+
+						.f-li{
+							font-size: 14px;
+							height: 24px;
+							margin: 0 0 10px 10px;
+						}
+
+						.f-li-selected{
+							font-size: 18px;
+							font-weight: 700;
+							height: 30px;
+							margin: 0 0 10px 10px;
+						}
+
+
+////////////// ユーザーメニュー ////////////

@@ -1,0 +1,180 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+body{
+  font-family:"Open Sans" , Roboto , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "Helvetica Neue" , Helvetica , Arial , Verdana , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+}
+
+
+/*For Material Design*/
+.inline-center{
+	display: inline-block;
+	text-align: center;
+}
+
+
+
+/*#######  PRIMARY  #########*/
+.c-primary{
+	background-color: #CFD8DC;
+}
+
+.c-dark-primary{
+	background-color: #607D8B;
+}
+
+.b-primary{
+	color: #4CAF50;
+	border: #4CAF50 dashed;
+}
+
+
+
+
+/*#######  使い回し  #########*/
+.float-left{
+	float: left;
+}
+
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+
+
+
+
+
+/*#######  For ナビバー  #########*/
+.mdl-layout__header-row{
+	background-color: white;
+}
+
+
+.nav-logo-img{
+	height: 53px;
+}
+
+
+.nav-logo-img-inner{
+	width: 100%;
+	margin-top: 10px;
+}
+
+
+.mdl-navigation .mdl-navigation__link{
+	color: black;
+}
+
+
+
+
+
+/*#######  For ボディー  #########*/
+body{
+	color: #212121;
+}
+
+
+a{
+	text-decoration: none;
+	color: #212121;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+
+
+
+
+
+/*#######  For カード  #########*/
+.mdl-card{
+	width: 100%;
+	margin: 15px 0;
+	min-height: 0;	/*material designの打ち消し*/
+}
+
+.upper-card{
+	padding: 20px;
+	border-bottom: solid #C4D0D3 1px;
+}
+
+		.s-icon{
+			margin-right: 15px;
+			width: 64px;
+			height: 64px;
+		}
+
+		.s-icon img{
+			width: 64px;
+			height: 64px;
+		}
+
+
+		.s-name{
+			margin: 10px 0 10px 0;
+			font-size: 30px;
+		}
+
+
+.lower-card{
+	padding: 20px;
+}
+
+		.s-ja,
+		.s-ch,
+		.s-pin{
+			margin-bottom: 10px;
+			word-wrap:break-word;
+		}
+
+		.s-ja:hover,
+		.s-ch:hover,
+		.s-pin:hover{
+			color: #FFFFFF;
+		}
+
+		#panel{
+			margin: 0;
+		}
+
+		.s-table{
+			border-collapse: collapse;
+			text-align: left;
+			width:100%;
+			table-layout: fixed;
+			word-wrap:break-word;
+		}
+
+				.s-table th{
+					border: solid white 1px;
+					padding: 7px;
+					background-color: #CFD8DC;
+				}
+
+				.s-table td{
+					border: solid white 1px;
+					padding: 7px;
+					background-color: #DFECF2;
+				}
+
+
+

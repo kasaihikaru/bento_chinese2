@@ -1,0 +1,59 @@
+<div class="mdl-grid">
+	<!-- #######  スペイサー  ######## -->
+	<div class="space mdl-cell mdl-cell--1-col"></div>
+
+
+
+
+<!-- #######  indexメニュー  ######## -->
+	<div class="mdl-cell mdl-cell--2-col mdl-cell--6-col-tablet mdl-cell--12-col-phone"">
+		<%= render :partial => 'users/user_menu', :locals=>{ user: @user, fold: @fold, folds: @folds} %>
+	</div>
+
+
+
+<!-- #######  index_contents  ######## -->
+	<div class="blue mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">
+
+		<!-- 新しい文 -->
+		<div class="s-new mdl-card mdl-shadow--2dp">
+			<div class="s-create">
+				<%= form_for (@sentence) do |s| %>
+					<div class="s-c-explanation">新しい文を作成する</div>
+					<%= s.hidden_field :fold_id ,value: @fold_id %>
+					<div class="s-c-s">
+						<%= s.text_area :ja, placeholder: "日本語文を書く", class: "s-c-ja", :required => true %>
+						<%= s.text_area :ch, placeholder: "中国語文を書く", id: "chsentence", class: "s-c-ch", :required => true %>
+					</div>
+					<div id="auto-words" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+						中国語の単語を抜き出す
+					</div>
+					<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+					<dl id="panel">
+						<dt class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">もっと単語</dt>
+							<dd style="margin:0;">
+								<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+								<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+								<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+								<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+							</dd>
+						</dl>
+					<%= s.submit "作成", class: "s-c-button b-primary mdl-button mdl-js-button" %>
+			  <% end %>
+			</div>
+		</div>
+
+		<div>
+			<%= link_to show_all_sentences_path(fold: @current_fold), id: "show-all-sentences-button",method: :patch do %>
+				文章を全て表示する
+			<% end %>
+		</div>
+
+
+
+		<!-- ########  文章 ########-->
+		<%= render :partial => 'folds/fold_sentences', :locals=>{ sentences: @foldsentences} %>
+
+
+<!-- #######  スペイサー  ######## -->
+	<div class="space mdl-cell mdl-cell--1-col"></div>

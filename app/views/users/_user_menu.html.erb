@@ -1,0 +1,39 @@
+
+
+
+<div class="c-dark-primary mdl-card mdl-shadow--2dp">
+      メニュ-<br><br><br>
+</div>
+
+
+
+
+
+
+<div class="f-menu c-dark-primary mdl-card mdl-shadow--2dp">
+  <% if user_signed_in? %>
+    <% if current_user.id == user.id %>
+      <div class="create-fold">
+        <%= form_for (fold) do |f| %>
+          <%= f.text_field :name, placeholder: "新しいボックス", class: "newbox", :required => true %>
+          <%= button_tag( class: "f-c-btn mdl-button mdl-js-button") do %>
+            作成
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="f-list">
+      <% folds.each do |fold| %>
+        <% if current_page?(fold)  %>
+          <div>
+            <a href="/folds/<%= fold.id %>", class="f-li-selected"><i class="material-icons">visibility</i><%= fold.name %></a>
+          </div>
+        <% else %>
+          <div class="f-li">
+            <a href="/folds/<%= fold.id %>"><%= fold.name %></a>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

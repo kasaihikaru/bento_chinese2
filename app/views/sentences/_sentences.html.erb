@@ -1,0 +1,58 @@
+<% sentences.each do |sentence| %>
+	<!-- Wide card with share menu button -->
+	<div class="mdl-card mdl-shadow--2dp">
+		<div class="upper-card clearfix">
+			<div class="s-icon float-left">
+				<% if sentence.user.image? %>
+					<%= image_tag sentence.user.image.thumb.url, :alt => "no-icon" %>
+				<% else %>
+					<img alt="no-icon" src="/assets/no-icon.png">
+				<% end %>
+			</div>
+			<div class="float-left">
+				<div class="s-name">
+					<a href="/users/<%= sentence.user_id %>"><%= sentence.user.name %></a>
+				</div>
+				<div class="s-time">
+					<time><%= time_ago_in_words sentence.created_at %></time>前
+				</div>
+			</div>
+		</div>
+		<div class="lower-card">
+			<div class="s-ja" ontouchstart="">
+				<%= sentence.ja %>
+			</div>
+			<div class="s-ch" ontouchstart="">
+				<%= sentence.ch %>
+			</div>
+			<div class="s-pin" ontouchstart="">
+				<%= sentence.pin %>
+			</div>
+			<dl id="panel">
+				<dt class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">単語を見る</dt>
+				<dd style="margin:0;">
+					<table class="s-table">
+						<thead>
+							<tr><th>日本語</th><th>中国語</th><th>ピンイン</th></tr>
+						</thead>
+						<tbody>
+							<% sentence.words.each do |word| %>
+								<tr>
+									<td><%= word.ja %></td><td><%= word.ch %></td><td><%= word.pin %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</dd>
+			</dl>
+		</div>
+		<div class="mdl-card__menu">
+			<% if user_signed_in? && sentence.user_id != current_user.id %>
+				<div id="like-buttons-<%= sentence.id %>" class="btnplace">
+					<%= render :partial => 'likes/like', :locals=>{sentence: sentence, like: sentence.likes.where(user_id: current_user.id).first, myfolds: myfolds} %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+<%= paginate @sentences %>

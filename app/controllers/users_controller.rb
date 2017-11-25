@@ -1,0 +1,16 @@
+class UsersController < ApplicationController
+
+	def show
+		@user = User.find(params[:id])
+		@sentences = @user.sentences.includes(:user).order("created_at DESC").page(params[:page]).per(20)
+
+		@fold = Fold.new
+		@folds = @user.folds
+
+		# like機能用
+		if user_signed_in?
+			@myfolds = current_user.folds
+		end
+	end
+
+end

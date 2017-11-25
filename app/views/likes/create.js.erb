@@ -1,0 +1,1 @@
+$("#like-buttons-<%= @sentence.id %>").html("<%= j(render :partial => 'likes/like', :locals=>{:sentence=>@sentence, :like => @sentence.likes.where(user_id: current_user.id).first, :myfolds=> @myfolds}) %>");

@@ -1,0 +1,34 @@
+<div class="mdl-grid">
+	<!-- #######  スペイサー  ######## -->
+	<div class="space mdl-cell mdl-cell--1-col"></div>
+
+
+
+
+<!-- #######  indexメニュー  ######## -->
+	<div class="mdl-cell mdl-cell--2-col mdl-cell--6-col-tablet mdl-cell--12-col-phone"">
+		<div class="c-dark-primary mdl-card mdl-shadow--2dp">
+			メニュ-<br><br><br><br><br><br><br><br><br>
+		</div>
+
+		<div class="c-dark-primary mdl-card mdl-shadow--2dp">
+			メニュ-２
+			<br><br><br><br><br><br><br><br><br>
+		</div>
+	</div>
+
+
+
+
+
+<!-- #######  index_contents  ######## -->
+	<div class="blue mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">
+		<%= render :partial => 'sentences/sentences', :locals=>{ sentences: @sentences, myfolds: @myfolds} %>
+	</div>
+
+
+
+
+<!-- #######  スペイサー  ######## -->
+  <div class="space mdl-cell mdl-cell--1-col"></div>
+</div>

@@ -1,0 +1,59 @@
+<div class="mdl-grid">
+	<!-- #######  スペイサー  ######## -->
+	<div class="space mdl-cell mdl-cell--1-col"></div>
+
+
+
+
+<!-- #######  indexメニュー  ######## -->
+	<div class="mdl-cell mdl-cell--2-col mdl-cell--6-col-tablet mdl-cell--12-col-phone"">
+		<%= render :partial => 'users/user_menu', :locals=>{ user: @user, fold: @fold, folds: @folds} %>
+	</div>
+
+
+
+<!-- #######  index_contents  ######## -->
+	<div class="blue mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">
+
+
+		<!-- ########  ユーザープロフィール ########-->
+    <div class="profile mdl-card mdl-shadow--2dp">
+      <div class="p-name">
+        <%= @user.name %>
+      </div>
+      <div class="p-img">
+      	<% if @user.image? %>
+					<%= image_tag @user.image.url, :alt => "icon" %>
+      	<% else %>
+					<img alt="no-icon" src="/assets/no-icon.png">
+				<% end %>
+      </div>
+      <div class="p-blog">
+        <strong>ブログ、HP</strong>
+        <p><a href="<%= @user.blog %>" target="_blank"><%= @user.blog %></a></p>
+      </div>
+      <div class="p-intro">
+        <strong>自己紹介</strong>
+        <p><%= simple_format(@user.introduction) %></p>
+      </div>
+      <% if user_signed_in? && current_user.id == @user.id %>
+        <div class="mdl-card__menu">
+			    <a href="/users/edit">
+			    	<div id="p-edit" class="icon material-icons">mode edit</div>
+			    </a>
+					<div class="mdl-tooltip" data-mdl-for="p-edit">プロフィールを編集</div>
+			  </div>
+      <% end %>
+    </div>
+
+
+
+
+
+    <!-- ########  文章 ########-->
+    <%= render :partial => 'sentences/sentences', :locals=>{ sentences: @sentences, myfolds: @myfolds} %>
+	</div>
+
+
+<!-- #######  スペイサー  ######## -->
+	<div class="space mdl-cell mdl-cell--1-col"></div>
