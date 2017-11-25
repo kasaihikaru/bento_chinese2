@@ -51,4 +51,4 @@ production:
   <<: *default
   database: bento_chinese2_production
   username: bento_chinese2
-  password: <%= ENV['BENTO_CHINESE2_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
