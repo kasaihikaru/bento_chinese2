@@ -3,14 +3,16 @@ app_path = File.expand_path('../../', __FILE__)
 worker_processes 1
 
 # working_directory "#{app_path}/current"
+# listen "#{app_path}/shared/tmp/sockets/unicorn.sock", :backlog => 64
 # pid "#{app_path}/shared/tmp/pids/unicorn.pid"
 # stderr_path "#{app_path}/shared/log/unicorn.stderr.log"
 # stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
 
-working_directory "/home/ec2-user/work/bento_chinese2"
-pid "/home/ec2-user/work/bento_chinese2/tmp/pids/unicorn.pid"
-stderr_path "/home/ec2-user/work/bento_chinese2/log/unicorn.stderr.log"
-stdout_path "/home/ec2-user/work/bento_chinese2/log/unicorn.stdout.log"
+working_directory "/home/ec2-user/work/bento_chinese2/current"
+listen "/home/ec2-user/work/bento_chinese2/shared/tmp/sockets/unicorn.sock"
+pid "/home/ec2-user/work/bento_chinese2/shared/tmp/pids/unicorn.pid"
+stderr_path "/home/ec2-user/work/bento_chinese2/shared/log/unicorn.stderr.log"
+stdout_path "/home/ec2-user/work/bento_chinese2/shared/log/unicorn.stdout.log"
 
 listen 3000
 timeout 60
