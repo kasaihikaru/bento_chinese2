@@ -1,34 +1,30 @@
-<div class="mdl-grid">
-	<!-- #######  スペイサー  ######## -->
-	<div class="space mdl-cell mdl-cell--1-col"></div>
-
-
-
-
-<!-- #######  indexメニュー  ######## -->
-	<div class="mdl-cell mdl-cell--2-col mdl-cell--6-col-tablet mdl-cell--12-col-phone"">
-		<div class="c-dark-primary mdl-card mdl-shadow--2dp">
-			メニュ-<br><br><br><br><br><br><br><br><br>
-		</div>
-
-		<div class="c-dark-primary mdl-card mdl-shadow--2dp">
-			メニュ-２
-			<br><br><br><br><br><br><br><br><br>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+			<%= render :partial => 'sentences/sentences', :locals=>{ sentences: @sentences, myfolds: @myfolds} %>
 		</div>
 	</div>
-
-
-
-
-
-<!-- #######  index_contents  ######## -->
-	<div class="blue mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">
-		<%= render :partial => 'sentences/sentences', :locals=>{ sentences: @sentences, myfolds: @myfolds} %>
-	</div>
-
-
-
-
-<!-- #######  スペイサー  ######## -->
-  <div class="space mdl-cell mdl-cell--1-col"></div>
 </div>
+
+<!-- ########フッタ########## -->
+<footer id="index-footer-navi">
+	<div class="footer-left clearfix">
+		<div class="myfolds">
+			<%= render :partial => 'svg/folds' %>
+		</div>
+		<div class="search">
+			<%= render :partial => 'svg/search' %>
+		</div>
+		<div class="search-input">
+			<input name="keyword" placeholder="" type="text" value=""></input>
+		</div>
+	</div>
+	<div class="footer-right clearfix">
+		<div class="replace">
+			<%= render :partial => 'svg/replace' %>
+		</div>
+		<div class="to-sentence-form">
+			<%= render :partial => 'svg/pen' %>
+		</div>
+	</div>
+</footer>

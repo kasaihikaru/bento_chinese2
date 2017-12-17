@@ -87,3 +87,7 @@ gem 'ruby-pinyin'
 
 #ページネーション
 gem 'kaminari'
+
+
+# bootstrap導入
+gem 'bootstrap-sass'

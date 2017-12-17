@@ -1,10 +1,66 @@
 <% sentences.each do |sentence| %>
+	<div class="post">
+		<div class="left-sentence-wrapper" style="float:left;">
+			<% if sentence.user.image? %>
+				<%= link_to user_path(sentence.user) do %>
+					<%= image_tag sentence.user.image.thumb.url, :alt => "no-icon", :class => "icon" %>
+				<% end %>
+			<% else %>
+				<%= link_to user_path(sentence.user) do %>
+					<img class="icon" alt="no-icon" src="/images/no-icon.png">
+				<% end %>
+			<% end %>
+			<p class="left_balloon"><%= sentence.ja %></p>
+		</div>
+		<p class="right_balloon"><%= sentence.ch %></p>
+		<p class="right_balloon"><%= sentence.pin %></p>
+		<% unless sentence.words.first == nil %>
+			<div class="right_balloon">
+				<div>
+					<div class="words-button" type="button" data-toggle="collapse" data-target="#words-open<%= sentence.id %>" aria-expanded="false" aria-controls="collapseExample">
+						単語
+					</div>
+					<div class="collapse" id="words-open<%= sentence.id %>">
+						<div class="card card-body">
+							<table class="table table-bordered table-responsive-sm">
+								<thead>
+									<tr>
+										<th scope="col" >日本語</th>
+										<th scope="col">中国語</th>
+										<th scope="col">ピンイン</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% sentence.words.each do |word| %>
+										<tr>
+											<th scope="col"><%= word.ja %></th>
+											<th scope="col"><%= word.ch %></th>
+											<th scope="col"><%= word.pin %></th>
+										</tr>
+									<% end %>
+								</tbody>
+							</table>
+					  </div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<br class="clear_balloon"/>
+	</div>
+<% end %>
+<%= paginate @sentences %>
+
+
+
+
+
+<% sentences.each do |sentence| %>
 	<!-- Wide card with share menu button -->
 	<div class="mdl-card mdl-shadow--2dp">
 		<div class="upper-card clearfix">
 			<div class="s-icon float-left">
 				<% if sentence.user.image? %>
-					<%= image_tag sentence.user.image.thumb.url, :alt => "no-icon" %>
+					<%= image_tag sentence.user.image.thumb.url, :alt => "no-icon", :class => "icon" %>
 				<% else %>
 					<img alt="no-icon" src="/images/no-icon.png">
 				<% end %>
@@ -14,7 +70,6 @@
 					<a href="/users/<%= sentence.user_id %>"><%= sentence.user.name %></a>
 				</div>
 				<div class="s-time">
-					<time><%= time_ago_in_words sentence.created_at %></time>前
 				</div>
 			</div>
 		</div>

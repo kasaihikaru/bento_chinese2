@@ -1,59 +1,69 @@
-<div class="mdl-grid">
-	<!-- #######  スペイサー  ######## -->
-	<div class="space mdl-cell mdl-cell--1-col"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
 
-
-
-
-<!-- #######  indexメニュー  ######## -->
-	<div class="mdl-cell mdl-cell--2-col mdl-cell--6-col-tablet mdl-cell--12-col-phone"">
-		<%= render :partial => 'users/user_menu', :locals=>{ user: @user, fold: @fold, folds: @folds} %>
-	</div>
-
-
-
-<!-- #######  index_contents  ######## -->
-	<div class="blue mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">
-
-
-		<!-- ########  ユーザープロフィール ########-->
-    <div class="profile mdl-card mdl-shadow--2dp">
-      <div class="p-name">
-        <%= @user.name %>
+    <!-- ########  ユーザープロフィール ########-->
+      <div class="profile">
+        <div class="row">
+          <div class="profile-left col-xs-3 col-sm-3 col-md-3">
+            <div class="p-img">
+              <% if @user.image? %>
+                <%= image_tag @user.image.url, :alt => "icon", :class=>"p-icon" %>
+              <% else %>
+                <img alt="no-icon" src="/images/no-icon.png" class="p-icon">
+              <% end %>
+            </div>
+            <div class="p-name">
+              <%= @user.name %>
+              <% if user_signed_in? && current_user.id == @user.id %>
+                <p class="p-edit"><%= link_to edit_user_registration_path(current_user) do %>編集<% end %></p>
+              <% end %>
+            </div>
+          </div>
+          <div class="profile-middle  col-xs-9 col-sm-9 col-md-9">
+            <div class="p-intro clearfix">
+              <div class="p-intro-svg">
+                <%= render :partial => 'svg/chat' %>
+              </div>
+              <div class="p-intro-msg">
+                <%= simple_format(@user.introduction) %>
+              </div>
+            </div>
+            <div class="p-blog clearfix">
+              <div class="p-blog-svg">
+                <%= render :partial => 'svg/pc' %>
+              </div>
+              <div class="p-blog-msg">
+                <a href="<%= @user.blog %>" target="_blank"><%= @user.blog %></a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="p-img">
-      	<% if @user.image? %>
-					<%= image_tag @user.image.url, :alt => "icon" %>
-      	<% else %>
-					<img alt="no-icon" src="/images/no-icon.png">
-				<% end %>
-      </div>
-      <div class="p-blog">
-        <strong>ブログ、HP</strong>
-        <p><a href="<%= @user.blog %>" target="_blank"><%= @user.blog %></a></p>
-      </div>
-      <div class="p-intro">
-        <strong>自己紹介</strong>
-        <p><%= simple_format(@user.introduction) %></p>
-      </div>
-      <% if user_signed_in? && current_user.id == @user.id %>
-        <div class="mdl-card__menu">
-			    <a href="/users/edit">
-			    	<div id="p-edit" class="icon material-icons">mode edit</div>
-			    </a>
-					<div class="mdl-tooltip" data-mdl-for="p-edit">プロフィールを編集</div>
-			  </div>
-      <% end %>
+      <%= render :partial => 'sentences/sentences', :locals=>{ sentences: @sentences, myfolds: @myfolds} %>
     </div>
+  </div>
+</div>
 
-
-
-
-
-    <!-- ########  文章 ########-->
-    <%= render :partial => 'sentences/sentences', :locals=>{ sentences: @sentences, myfolds: @myfolds} %>
-	</div>
-
-
-<!-- #######  スペイサー  ######## -->
-	<div class="space mdl-cell mdl-cell--1-col"></div>
+<!-- ########フッタ########## -->
+<footer id="index-footer-navi">
+  <div class="footer-left clearfix">
+    <div class="myfolds">
+      <%= render :partial => 'svg/folds' %>
+    </div>
+    <div class="search">
+      <%= render :partial => 'svg/search' %>
+    </div>
+    <div class="search-input">
+      <input name="keyword" placeholder="" type="text" value=""></input>
+    </div>
+  </div>
+  <div class="footer-right clearfix">
+    <div class="replace">
+      <%= render :partial => 'svg/replace' %>
+    </div>
+    <div class="to-sentence-form">
+      <%= render :partial => 'svg/pen' %>
+    </div>
+  </div>
+</footer>

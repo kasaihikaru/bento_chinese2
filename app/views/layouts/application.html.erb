@@ -10,65 +10,66 @@
 
 		<!-- For title -->
 		<title>BENTO Chinese || 瞬間作文ができる中国語学習サイト</title>
-		<!--    <link rel="icon" type="image/png" href="<#%= asset_path "logo_transparent.png" %>"> -->
+		<!-- <link rel="icon" type="image/png" href="<#%= asset_path "logo_transparent.png" %>"> -->
 
 
 		<!-- preset -->
-    <%= csrf_meta_tags %>
+		<%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  </head>
+		<%= stylesheet_link_tag 'application', media: 'all' %>
+		<%= javascript_include_tag 'application' %>
+	</head>
 
-  <body>
-		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	<body>
 
-<!-- ########   ナビバー   ########## -->
-			<header class="mdl-layout__header">
-		    <div class="mdl-layout__header-row">
-		      <!-- Title -->
-		      <a href="/"><img alt="BENTO Chinese" src="/images/logo.png" class="nav-logo-img"></a>
-		      <!-- Add spacer, to align navigation to the right -->
-		      <div class="mdl-layout-spacer"></div>
-		      <!-- Navigation. We hide it in small screens. -->
-		      <nav class="mdl-navigation mdl-layout--large-screen-only">
-		        <a class="mdl-navigation__link " href="/abouts">About</a>
-		        <% if user_signed_in? %>
-		        	<a class="mdl-navigation__link" href="/users/<%= current_user.id %>">MyBento</a>
-		        	<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'mdl-navigation__link' %>
-		        <% else %>
-		        	<%= link_to "ログイン", new_user_session_path, class: 'mdl-navigation__link' %>
-              <%= link_to "新規登録", new_user_registration_path, class: 'mdl-navigation__link' %>
-		        <% end %>
-		      </nav>
-		    </div>
-			</header>
-			<div class="mdl-layout__drawer">
-		    <a href="/"><img alt="BENTO Chinese" src="/images/logo.png" class="nav-logo-img-inner"></a>
-		    <nav class="mdl-navigation">
-		    	<a class="mdl-navigation__link" href="/abouts">About</a>
-	        <% if user_signed_in? %>
-	        	<a class="mdl-navigation__link" href="/users/<%= current_user.id %>">MyBento</a>
-	        	<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'mdl-navigation__link' %>
-	        <% else %>
-	        	<%= link_to "ログイン", new_user_session_path, class: 'mdl-navigation__link' %>
-            <%= link_to "新規登録", new_user_registration_path, class: 'mdl-navigation__link' %>
-	        <% end %>
-		    </nav>
+<!-- ######## ナビバー ########## -->
+		<header id="global-navi" class="">
+			<div class="container">
+				<div class="mypage">
+						<% if user_signed_in? %>
+							<% if current_user.image? %>
+								<%= link_to user_path(current_user) do %>
+									<%= image_tag sentence.user.image.thumb.url, :class => "icon", :alt => "icon" %>
+								<% end %>
+							<% else %>
+								<%= link_to user_path(current_user) do %>
+									<%= image_tag "/images/no-icon.png", :class => "icon", :alt => "icon" %>
+								<% end %>
+							<% end %>
+							<p><%= link_to current_user.name, user_path(current_user) %></p>
+						<% else %>
+							<a href="/" class=""><img alt="BENTO Chinese" src="/images/logo.png" class="logo-center"></a>
+							<h1>BENTO Chinese</h1>
+						<% end %>
+				</div>
+			</div>
+			<div class="logo">
+				<% if user_signed_in? %>
+					<a href="/" class=""><img alt="BENTO Chinese" src="/images/logo.png" class="nav-logo-img"></a>
+					<h1>BENTO Chinese</h1>
+				<% end %>
 			</div>
 
-
-
-<!-- ########   ボディー   ########## -->
-			<main class="c-primary mdl-layout__content">
-				<div class="contents">
-					<%= yield %>
+			<div class="menu">
+				<div class="log-inout">
+					<% if user_signed_in? %>
+						<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'log-out' %>
+					<% else %>
+						<%= link_to "新規登録", new_user_registration_path, class: 'sign-up' %>/
+						<%= link_to "ログイン", new_user_session_path, class: 'log-in' %>
+					<% end %>
 				</div>
-			</main>
+				<div class="about">
+					<a href="/abouts">使い方</a>
+				</div>
+			</div>
+		</header>
 
 
-<!-- ########   フッターなし  ########## -->
+
+<!-- ########contents+footer########## -->
+		<div id="contents">
+			<%= yield %>
 		</div>
   </body>
 </html>

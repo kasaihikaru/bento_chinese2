@@ -7,18 +7,71 @@
 
 ////////////// ユーザー紹介カード ////////////
 .profile{
-	padding: 30px;
+	margin-top: 15px;
+	background-color: #EBF0F6;
+	border: solid 1px #DBE5F6;
+	@media screen and (max-width: 767px) {
+		padding: 15px;
+	}
+	@media screen and (min-width: 768px) {
+		padding: 20px;
+	}
 }
 
-		.p-name{
-			font-size: 30px;
-			font-weight: 600;
-			height: 30px;
+.profile-left{
+		.p-img{
+			margin: 5px auto 15px;
+			width: 100%;
+				.p-icon{
+					width: 100%;
+				}
 		}
 
-		.p-img{
-			margin: 5px 0 15px;
+		.p-name{
+			text-align: center;
+			font-weight: 600;
+			@media screen and (max-width: 767px) {
+				font-size: 14px;
+				.p-edit{
+					font-size: 10px;
+				}
+			}
+			@media screen and (min-width: 768px) {
+				font-size: 20px;
+				.p-edit{
+					font-size: 12px;
+				}
+			}
 		}
+}
+.profile-middle{
+		.p-intro{
+			.p-intro-svg{
+			float: left;
+			margin-right: 5px;
+			}
+			.p-intro-msg{
+			float: left;
+			font-size: 14px;
+			max-width: 85%
+			}
+		}
+		.p-blog{
+			.p-blog-svg{
+			float: left;
+			margin-right: 5px;
+			}
+			.p-blog-msg{
+			float: left;
+			font-size: 14px;
+			max-width: 85%
+			}
+		}
+
+}
+
+
+
 
 
 .f-menu{
