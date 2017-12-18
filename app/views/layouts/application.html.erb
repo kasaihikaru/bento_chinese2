@@ -29,7 +29,7 @@
 						<% if user_signed_in? %>
 							<% if current_user.image? %>
 								<%= link_to user_path(current_user) do %>
-									<%= image_tag sentence.user.image.thumb.url, :class => "icon", :alt => "icon" %>
+									<%= image_tag current_user.image.thumb.url, :class => "icon", :alt => "icon" %>
 								<% end %>
 							<% else %>
 								<%= link_to user_path(current_user) do %>
