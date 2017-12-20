@@ -5,6 +5,7 @@ class SentencesController < ApplicationController
 		if user_signed_in?
 			@myfolds = current_user.folds
 		end
+		@fold = Fold.new
 	end
 
 

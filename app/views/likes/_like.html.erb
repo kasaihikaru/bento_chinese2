@@ -1,14 +1,14 @@
 <% if user_signed_in? %>
   <% if sentence.like_user(current_user.id) %>
     <%= link_to sentence_like_path(sentence_id: sentence.id, id:like.id ), id: "unlike-button",method: :delete, remote: true do %>
-      <img alt="no-like.." src="/images/r-heart.png">
+        <%= render :partial => 'svg/like' %>
       <span>
         <%= sentence.likes_count %>
       </span>
     <% end %>
   <% else %>
     <%= link_to sentence_likes_path(sentence.id), id: "like-button", method: :post, remote: true do %>
-      <img alt="like!" src="/images/w-heart.png">
+      <%= render :partial => 'svg/not_like' %>
       <span>
         <%= sentence.likes_count %>
       </span>

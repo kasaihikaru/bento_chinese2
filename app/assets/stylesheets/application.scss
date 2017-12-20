@@ -69,10 +69,21 @@ body{
     display:block;
     clear:both;
 }
+
+.no-css{
+	background-color: none;
+	border: none;
+}
+
+
+
+/*####### For svg #########*/
 .icon-color{
 	fill: #707070;
 }
-
+.like-icon{
+	fill: #E40037;
+	}
 
 
 
@@ -320,8 +331,8 @@ a:hover{
 
 	.left-sentence-wrapper{
 			position: relative;
+			max-width: 80%
 	}
-
 	.icon{
 		border-radius: 4px;
 		position: absolute;
@@ -337,7 +348,9 @@ a:hover{
 			height: 45px;
 		}
 	}
-
+	.like-button{
+		float: right;
+	}
 	.right_balloon{
 		.words-button{
 			text-align: right;
@@ -362,7 +375,6 @@ a:hover{
     position: relative;
     background: #0065FF;
     margin: 10px 0;
-    max-width: 80%;
     padding: 10px;
     border-radius: 15px;
     // clear: both; //アイコン横に並べるため。
@@ -396,7 +408,7 @@ a:hover{
     border-width: 8px;
     margin-top: -8px;
 }
- 
+
 /*******************************
 * 右からの吹き出し
 ********************************/

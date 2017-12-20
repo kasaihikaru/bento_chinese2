@@ -18,8 +18,7 @@ class FoldsController < ApplicationController
 	end
 
 	def create
-		just_created_fold = Fold.create(create_params)
-		redirect_to fold_path(just_created_fold.id)
+		Fold.create(create_params)
 	end
 
 	def edit

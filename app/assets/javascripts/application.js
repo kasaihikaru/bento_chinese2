@@ -104,9 +104,18 @@ $(document).ready(function() {
 			var target = '#sentence_words_attributes_' +i+ '_ch';
 			$(target).val(word);
 		});
-
-
 	});
+});
 
 
+
+///////////// popoverオプション ////////////////
+$('.pop_folds').popover({ html : true});
+$(document).ready(function(){
+  $('.pop_folds').popover({
+    html : true,
+    content: function() {
+      return $('#pop_folds_wrapper').html();
+    }
+  });
 });
