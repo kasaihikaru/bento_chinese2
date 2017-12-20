@@ -19,6 +19,7 @@ class FoldsController < ApplicationController
 
 	def create
 		Fold.create(create_params)
+		@myfolds = current_user.folds
 	end
 
 	def edit

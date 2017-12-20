@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 		@fold = Fold.new
 		@folds = @user.folds
 
-		# like機能用
 		if user_signed_in?
 			@myfolds = current_user.folds
 		end

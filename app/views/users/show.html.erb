@@ -49,7 +49,24 @@
 <footer id="index-footer-navi">
   <div class="footer-left clearfix">
     <div class="myfolds">
-      <%= render :partial => 'svg/folds' %>
+      <% if user_signed_in? %>
+        <a data-placement="top" class='pop_folds' data-placement='above' title="フォルダを選択" href='#'>
+          <%= render :partial => 'svg/folds' %>
+        </a>
+        <div id="pop_folds_wrapper" style="display: none">
+          <div id="folds_list">
+            <%= render :partial => 'folds/folds_list', :locals=>{myfolds: @myfolds} %>
+          </div>
+          <div class="create-fold">
+            <%= form_for @fold, url: folds_path, method: :post, remote: true do |f| %>
+              <%= f.text_field :name, placeholder: "新しいフォルダ", class: "", :required => true %>
+              <%= button_tag( class: "no-css") do %>
+                <%= render :partial => 'svg/plus' %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
     <div class="search">
       <%= render :partial => 'svg/search' %>
