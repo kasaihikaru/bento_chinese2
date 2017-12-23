@@ -6,14 +6,15 @@ class FoldsController < ApplicationController
 		@sentence.words.build
 
 			@current_fold = Fold.find(params[:id])
-			fold_user_id = @current_fold.user_id
-		@user = User.find(fold_user_id)
+			@current_fold_user_id = @current_fold.user_id
+		@user = User.find(@current_fold_user_id)
 		@fold = Fold.new
 		@myfolds = @user.folds
 
-		@foldsentences = @current_fold.sentences.where(hide: 0).order("created_at DESC")
+		@foldsentences = @current_fold.sentences.where(hide: 0).order("created_at DESC").page(params[:page]).per(20)
 
-
+		@redirect_type = 3
+		@redirect_id = params[:id]
 
 	end
 

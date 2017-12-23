@@ -1,5 +1,10 @@
 <%= form_for sentence, method: :post do |s| %>
 <!-- 	<%= s.hidden_field :fold_id ,value: fold_id %> -->
+
+<!-- リダイレクト先flg -->
+	<%= s.hidden_field :redirect_id ,value: @redirect_id %>
+	<%= s.hidden_field :redirect_type ,value: @redirect_type %>
+
 	<div class="s-c-s">
 		<%= s.text_area :ja, placeholder: "日本語文を書く", class: "s-c-ja", :required => true %>
 		<%= s.text_area :ch, placeholder: "中国語文を書く", id: "chsentence", class: "s-c-ch", :required => true %>

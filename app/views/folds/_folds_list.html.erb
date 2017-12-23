@@ -1,5 +1,13 @@
 <% myfolds.each do |fold| %>
 	<div class="folds-list">
-		<a href="/folds/<%= fold.id %>"><%= fold.name %></a>
+		<% if current_page?(fold)  %>
+			<%= render :partial => 'svg/fold_open' %>
+			<%= fold.name %>
+		<% else %>
+			<a href="/folds/<%= fold.id %>">
+			<%= render :partial => 'svg/fold' %>
+			<%= fold.name %>
+			</a>
+		<% end %>
 	</div>
 <% end %>

@@ -1,12 +1,21 @@
 <% sentences.each do |sentence| %>
 	<div class="post">
+
+		<!-- お気に入りボタン or 編集ボタン-->
 		<div class="like-button">
 			<% if user_signed_in? && sentence.user_id != current_user.id %>
 				<div id="like-buttons-<%= sentence.id %>" class="btnplace">
 					<%= render :partial => 'likes/like', :locals=>{sentence: sentence, like: sentence.likes.where(user_id: current_user.id).first, myfolds: myfolds} %>
 				</div>
 			<% end %>
+			<% if user_signed_in? && sentence.user_id == current_user.id %>
+				<%= link_to edit_sentence_path(sentence) do %>
+					<%= render :partial => 'svg/edit' %>
+				<% end %>
+			<% end %>
 		</div>
+
+		<!-- left-sentence -->
 		<div class="left-sentence-wrapper" style="float:left;">
 			<% if sentence.user.image? %>
 				<%= link_to user_path(sentence.user) do %>
@@ -19,6 +28,8 @@
 			<% end %>
 			<p class="left_balloon"><%= sentence.ja %></p>
 		</div>
+
+		<!-- right-sentence -->
 		<p class="right_balloon"><%= sentence.ch %></p>
 		<p class="right_balloon"><%= sentence.pin %></p>
 		<% unless sentence.words.first == nil %>
@@ -58,4 +69,4 @@
 		<hr>
 	</div>
 <% end %>
-<%= paginate @sentences %>
+<%= paginate sentences %>

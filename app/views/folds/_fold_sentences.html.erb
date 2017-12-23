@@ -1,46 +1,81 @@
-<div id="foldsentence-cards">
 <% sentences.each do |sentence| %>
-	<!-- Wide card with share menu button -->
-	<div class="mdl-card mdl-shadow--2dp">
-		<div class="upper-card clearfix">
-		</div>
-		<div class="lower-card">
-			<div class="s-ja" ontouchstart="">
-				<%= sentence.ja %>
-			</div>
-			<div class="s-ch" ontouchstart="">
-				<%= sentence.ch %>
-			</div>
-			<div class="s-pin" ontouchstart="">
-				<%= sentence.pin %>
-			</div>
-			<dl id="panel">
-				<dt class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">単語を見る</dt>
-				<dd style="margin:0;">
-					<table class="s-table">
-						<thead>
-							<tr><th>日本語</th><th>中国語</th><th>ピンイン</th></tr>
-						</thead>
-						<tbody>
-							<% sentence.words.each do |word| %>
-								<tr>
-									<td><%= word.ja %></td><td><%= word.ch %></td><td><%= word.pin %></td>
-								</tr>
-							<% end %>
-						</tbody>
-					</table>
-				</dd>
-			</dl>
-		</div>
-		<div class="mdl-card__menu">
-			<% if user_signed_in? && sentence.user_id == current_user.id %>
-				<div id="memorized-buttons-<%= sentence.id %>" class="btnplace">
-					<%= link_to memorized_sentences_path(sentence_id: sentence.id), id: "memorized-button",method: :patch, remote: true do %>
-						覚えた
-					<% end %>
+	<div class="post">
+
+		<!-- お気に入りボタン or 編集ボタン -->
+		<div class="like-button">
+			<% if user_signed_in? && sentence.user_id != current_user.id %>
+				<div id="like-buttons-<%= sentence.id %>" class="btnplace">
+					<%= render :partial => 'likes/like', :locals=>{sentence: sentence, like: sentence.likes.where(user_id: current_user.id).first, myfolds: myfolds} %>
 				</div>
 			<% end %>
+			<% if user_signed_in? && sentence.user_id == current_user.id %>
+				<%= link_to edit_sentence_path(sentence) do %>
+					<%= render :partial => 'svg/edit' %>
+				<% end %>
+			<% end %>
 		</div>
+
+		<!-- left-sentence -->
+		<div class="left-sentence-wrapper" style="float:left;">
+			<% if sentence.user.image? %>
+				<%= link_to user_path(sentence.user) do %>
+					<%= image_tag sentence.user.image.thumb.url, :alt => "no-icon", :class => "icon" %>
+				<% end %>
+			<% else %>
+				<%= link_to user_path(sentence.user) do %>
+					<img class="icon" alt="no-icon" src="/images/no-icon.png">
+				<% end %>
+			<% end %>
+			<p class="left_balloon"><%= sentence.ja %></p>
+		</div>
+
+		<!-- right-sentence -->
+		<p class="right_balloon"><%= sentence.ch %></p>
+		<p class="right_balloon"><%= sentence.pin %></p>
+		<% unless sentence.words.first == nil %>
+			<div class="right_balloon">
+				<div>
+					<button class="words-button" type="button" data-toggle="collapse" data-target="#words-open<%= sentence.id %>" aria-expanded="false" aria-controls="collapseExample">
+						【単語帳を開く】
+					</button>
+					<div class="collapse" id="words-open<%= sentence.id %>">
+						<div class="card card-body">
+							<table class="table table-bordered table-responsive-sm">
+								<thead>
+									<tr>
+										<th scope="col" >日本語</th>
+										<th scope="col">中国語</th>
+										<th scope="col">ピンイン</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% sentence.words.each do |word| %>
+										<tr>
+											<th scope="col"><%= word.ja %></th>
+											<th scope="col"><%= word.ch %></th>
+											<th scope="col"><%= word.pin %></th>
+										</tr>
+									<% end %>
+								</tbody>
+							</table>
+					  </div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<br class="clear_balloon"/>
+	</div>
+	<div class="memorized-button-place">
+		<% if user_signed_in? && sentence.user_id == current_user.id %>
+			<div id="memorized-buttons-<%= sentence.id %>" class="">
+				<%= link_to memorized_sentences_path(sentence_id: sentence.id), id: "memorized-button",method: :patch, remote: true do %>
+					覚えた！消えて！
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<div>
+		<hr>
 	</div>
 <% end %>
-</div>
+<%= paginate sentences %>
