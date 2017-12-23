@@ -5,7 +5,10 @@ class SentencesController < ApplicationController
 		if user_signed_in?
 			@myfolds = current_user.folds
 		end
+
 		@fold = Fold.new
+		@sentence = Sentence.new
+		@sentence.words.build
 	end
 
 
@@ -18,7 +21,13 @@ class SentencesController < ApplicationController
 		words.each do |w|
 			Word.create("ja"=>w[:ja], "ch"=>w[:ch], "pin"=>w[:pin], "sentence_id"=>w[:sentence_id])
 		end
-		redirect_to fold_path(params[:sentence]["fold_id"])
+
+		@sentence = Sentence.new
+		@sentence.words.build
+		if user_signed_in?
+			@myfolds = current_user.folds
+		end
+		# redirect_to fold_path(params[:sentence]["fold_id"])
 	end
 
 

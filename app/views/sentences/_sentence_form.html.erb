@@ -1,0 +1,37 @@
+<%= form_for sentence, url: folds_path, method: :post, remote: true do |s| %>
+	<%= s.hidden_field :fold_id ,value: fold_id %>
+	<div class="s-c-s">
+		<%= s.text_area :ja, placeholder: "日本語文を書く", class: "s-c-ja", :required => true %>
+		<%= s.text_area :ch, placeholder: "中国語文を書く", id: "chsentence", class: "s-c-ch", :required => true %>
+	</div>
+	<div id="auto-words" class="">
+		中国語の単語を抜き出す
+	</div>
+	<%= render :partial => "sentences/words_form", :locals=>{:s=>s} %>
+	<dl id="panel">
+		<dt class="">もっと単語</dt>
+		<dd style="margin:0;">
+			<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+			<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+			<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+			<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+		</dd>
+	</dl>
+	<div class="myfolds">
+		<% if user_signed_in? %>
+				<div id="">
+					<%= render :partial => 'folds/folds_list_for_form', :locals=>{myfolds: @myfolds} %>
+				</div>
+				<div class="create-fold">
+					<%= form_for @fold, url: folds_path, method: :post, remote: true do |f| %>
+						<%= f.text_field :name, placeholder: "新しいフォルダ", class: "", :required => true %>
+						<%= button_tag( class: "no-css") do %>
+							<%= render :partial => 'svg/plus' %>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<%= s.submit "作成", class: "", id: "sentence-create-button" %>
+<% end %>

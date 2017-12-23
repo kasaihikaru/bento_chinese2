@@ -6,6 +6,9 @@
 	</div>
 </div>
 
+
+
+
 <!-- ########フッタ########## -->
 <footer id="index-footer-navi">
 	<div class="footer-left clearfix">
@@ -41,14 +44,35 @@
 			<%= render :partial => 'svg/replace' %>
 		</div>
 		<div class="to-sentence-form">
-			<%= render :partial => 'svg/pen' %>
+			<!-- Button to Open the Modal -->
+			<button type="button" class="no-css" data-toggle="modal" data-target="#myModal">
+			  <%= render :partial => 'svg/pen' %>
+			</button>
 		</div>
 	</div>
 </footer>
 
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
-<script>
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover();
-});
-</script>
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">新しい文章を追加する</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+				<%= render :partial => 'sentences/sentence_form', :locals=>{sentence: @sentence,  fold_id: @fold_id} %>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
