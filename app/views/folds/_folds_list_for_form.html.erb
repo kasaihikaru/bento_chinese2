@@ -1,5 +1,2 @@
-<% myfolds.each do |fold| %>
-		<label class="radio-inline">
-			<input type="radio" name="<%= fold.name %>">
-		</label>
-<% end %>
+<p>保存先フォルダを選ぶ</p>
+<%= s.collection_select 'fold_id', myfolds, :id, :name, class: "" %>

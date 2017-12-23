@@ -27,6 +27,7 @@ class SentencesController < ApplicationController
 		if user_signed_in?
 			@myfolds = current_user.folds
 		end
+		redirect_to root_path
 		# redirect_to fold_path(params[:sentence]["fold_id"])
 	end
 

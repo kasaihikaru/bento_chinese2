@@ -19,7 +19,6 @@
 @import "likes";
 @import "sentences";
 @import "users";
-// @import "material.min.css";
 
 
 
@@ -242,6 +241,11 @@ a:hover{
 	text-decoration: underline;
 }
 
+
+
+.panel-default{
+	border: none;
+}
 
 
 

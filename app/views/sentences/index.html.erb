@@ -44,35 +44,35 @@
 			<%= render :partial => 'svg/replace' %>
 		</div>
 		<div class="to-sentence-form">
+			<% if user_signed_in? %>
 			<!-- Button to Open the Modal -->
-			<button type="button" class="no-css" data-toggle="modal" data-target="#myModal">
-			  <%= render :partial => 'svg/pen' %>
-			</button>
+				<button type="button" class="no-css" data-toggle="modal" data-target="#sentence-create-modal">
+				  <%= render :partial => 'svg/pen' %>
+				</button>
+			<% end %>
 		</div>
 	</div>
 </footer>
 
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
+<% if user_signed_in? %>
+<div class="modal fade" id="sentence-create-modal">
 	<div class="modal-dialog modal-lg">
     <div class="modal-content">
-
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">新しい文章を追加する</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-
       <!-- Modal body -->
       <div class="modal-body">
-				<%= render :partial => 'sentences/sentence_form', :locals=>{sentence: @sentence,  fold_id: @fold_id} %>
+				<%= render :partial => 'sentences/sentence_form', :locals=>{sentence: @sentence, fold_id: @fold_id, myfolds: @myfolds} %>
       </div>
-
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
       </div>
-
     </div>
   </div>
 </div>
+<% end %>

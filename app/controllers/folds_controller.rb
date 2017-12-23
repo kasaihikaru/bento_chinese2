@@ -9,7 +9,7 @@ class FoldsController < ApplicationController
 			fold_user_id = @current_fold.user_id
 		@user = User.find(fold_user_id)
 		@fold = Fold.new
-		@folds = @user.folds
+		@myfolds = @user.folds
 
 		@foldsentences = @current_fold.sentences.where(hide: 0).order("created_at DESC")
 
