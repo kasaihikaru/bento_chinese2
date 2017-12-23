@@ -28,33 +28,7 @@ body{
 
 
 
-
-
-
-
-
-/*For Material Design*/
-.inline-center{
-	display: inline-block;
-	text-align: center;
-}
-
-
-
 /*#######  PRIMARY  #########*/
-.c-primary{
-	background-color: #FFFFFF;
-}
-
-.c-dark-primary{
-	background-color: #607D8B;
-}
-
-.b-primary{
-	color: #4CAF50;
-	border: #4CAF50 dashed;
-}
-
 
 
 
@@ -74,6 +48,12 @@ body{
 	border: none;
 }
 
+.zero-space{
+	padding: 0;
+	margin: 0;
+}
+
+
 
 
 /*####### For svg #########*/
@@ -83,6 +63,21 @@ body{
 .like-icon{
 	fill: #E40037;
 	}
+
+
+
+
+
+/* スクロールする場所：固定ナビゲーションの高さ＋余白をpadding-topに指定*/
+#contents {
+	padding: 60px 0 0 0;
+		@media screen and (max-width: 767px) {
+			padding: 70px 0 60px 0;
+		}
+		@media screen and (min-width: 768px) {
+			padding: 80px 0 60px 0;
+		}
+}
 
 
 
@@ -208,17 +203,6 @@ body{
 		}
 }
 
-
-/* スクロールする場所：固定ナビゲーションの高さ＋余白をpadding-topに指定*/
-#contents {
-	padding: 60px 0 0 0;
-		@media screen and (max-width: 767px) {
-			padding-top: 70px;
-		}
-		@media screen and (min-width: 768px) {
-			padding-top: 80px;
-		}
-}
 
 
 

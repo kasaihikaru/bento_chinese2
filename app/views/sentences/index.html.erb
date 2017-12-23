@@ -9,9 +9,11 @@
 
 
 
-<!-- ########フッタ########## -->
+<!-- ######## フッター ########## -->
 <footer id="index-footer-navi">
 	<div class="footer-left clearfix">
+
+		<!-- ######## フォルダ ########## -->
 		<div class="myfolds">
 			<% if user_signed_in? %>
 				<a data-placement="top" class='pop_folds' data-placement='above' title="フォルダを選択" href='#'>
@@ -24,7 +26,7 @@
 					<div class="create-fold">
 						<%= form_for @fold, url: folds_path, method: :post, remote: true do |f| %>
 							<%= f.text_field :name, placeholder: "新しいフォルダ", class: "", :required => true %>
-							<%= button_tag( class: "no-css") do %>
+							<%= button_tag( class: "no-css zero-space") do %>
 								<%= render :partial => 'svg/plus' %>
 							<% end %>
 						<% end %>
@@ -32,6 +34,9 @@
 				</div>
 			<% end %>
 		</div>
+
+
+		<!-- ######## 検索 ########## -->
 		<div class="search">
 			<%= render :partial => 'svg/search' %>
 		</div>
@@ -39,10 +44,15 @@
 			<input name="keyword" placeholder="" type="text" value=""></input>
 		</div>
 	</div>
+
+
 	<div class="footer-right clearfix">
+		<!-- ######## 日中入れ替え ########## -->
 		<div class="replace">
 			<%= render :partial => 'svg/replace' %>
 		</div>
+
+		<!-- ######## 文章作成ボタン ########## -->
 		<div class="to-sentence-form">
 			<% if user_signed_in? %>
 			<!-- Button to Open the Modal -->
@@ -54,17 +64,16 @@
 	</div>
 </footer>
 
-<!-- The Modal -->
+
+<!-- ######## 文章作成モーダル ########## -->
 <% if user_signed_in? %>
 <div class="modal fade" id="sentence-create-modal">
 	<div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">新しい文章を追加する</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <!-- Modal body -->
       <div class="modal-body">
 				<%= render :partial => 'sentences/sentence_form', :locals=>{sentence: @sentence, fold_id: @fold_id, myfolds: @myfolds} %>
       </div>
