@@ -84,7 +84,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <%= render :partial => 'sentences/sentence_form', :locals=>{sentence: @sentence, fold_id: @fold_id, myfolds: @myfolds} %>
+          <%= render :partial => 'folds/sentence_form_in_fold', :locals=>{sentence: @sentence, fold_id: @fold_id, myfolds: @myfolds} %>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">

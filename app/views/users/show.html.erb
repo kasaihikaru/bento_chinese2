@@ -42,7 +42,9 @@
       </div>
 
       <!-- 文章一覧 -->
-      <%= render :partial => 'sentences/sentences', :locals=>{ sentences: @sentences, myfolds: @myfolds} %>
+      <div id="sentneces-wrapper-for-fold-add">
+        <%= render :partial => 'sentences/sentences', :locals=>{ sentences: @sentences, myfolds: @myfolds} %>
+      </div>
     </div>
   </div>
 </div>
@@ -112,8 +114,8 @@
           <h4 class="modal-title">新しい文章を追加する</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <div class="modal-body">
-          <%= render :partial => 'sentences/sentence_form', :locals=>{sentence: @sentence, fold_id: @fold_id, myfolds: @myfolds} %>
+        <div class="modal-body" id="sentence_form">
+          <%= render :partial => 'sentences/sentence_form', :locals=>{sentence: @sentence, myfolds: @myfolds} %>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">

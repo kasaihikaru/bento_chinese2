@@ -21,6 +21,9 @@ class FoldsController < ApplicationController
 	def create
 		Fold.create(create_params)
 		@myfolds = current_user.folds
+		@sentence = Sentence.new
+		@sentence.words.build
+		@sentences = Sentence.includes(:user).order("created_at DESC").page(params[:page]).per(20)
 	end
 
 	def edit

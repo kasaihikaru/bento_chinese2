@@ -1,1 +1,3 @@
 $("#folds_list").html("<%= j(render :partial => 'folds/folds_list', :locals=>{myfolds: @myfolds}) %>");
+$("#sentence_form").html("<%= j(render :partial => 'sentences/sentence_form', :locals=>{sentence: @sentence, myfolds: @myfolds}) %>");
+$("#sentneces-wrapper-for-fold-add").html("<%= j(render :partial => 'sentences/sentences', :locals=>{sentences: @sentences, myfolds: @myfolds}) %>");

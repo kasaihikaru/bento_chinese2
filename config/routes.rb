@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 		collection do
 			patch 'memorized' #覚えたボタン
 			patch 'show_all' #全表示ボタン
+			post 'copy' #コピーボタン
 		end
 		resources :likes, only: [:create, :destroy]
 	end

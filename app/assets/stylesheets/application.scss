@@ -37,6 +37,10 @@ body{
 	float: left;
 }
 
+.float-right{
+	float: right;
+}
+
 .clearfix:after {
     content:" ";
     display:block;

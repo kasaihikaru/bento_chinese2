@@ -1,17 +1,40 @@
 <% if user_signed_in? %>
+
+  <!-- likeが押されてるとき -->
   <% if sentence.like_user(current_user.id) %>
+
+
     <%= link_to sentence_like_path(sentence_id: sentence.id, id:like.id ), id: "unlike-button",method: :delete, remote: true do %>
-        <%= render :partial => 'svg/like' %>
-      <span>
+      <span class="float-right">
         <%= sentence.likes_count %>
       </span>
+      <%= render :partial => 'svg/like' %>
     <% end %>
+
+    <div class="btn-group float-right">
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <%= render :partial => 'svg/inbox' %>
+      </button>
+      <ul class="dropdown-menu">
+        <% myfolds.each do |fold| %>
+        <li>
+          <%= link_to copy_sentences_path(fold: fold, sentence: sentence), method: :post, remote: true do %>
+            <%= render :partial => 'svg/fold' %>
+            <%= fold.name %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+
+
+  <!-- likeが押されてないとき -->
   <% else %>
     <%= link_to sentence_likes_path(sentence.id), id: "like-button", method: :post, remote: true do %>
-      <%= render :partial => 'svg/not_like' %>
-      <span>
+      <span class="float-right">
         <%= sentence.likes_count %>
       </span>
+      <%= render :partial => 'svg/not_like' %>
     <% end %>
   <% end %>
 <% end %>

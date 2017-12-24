@@ -10,9 +10,9 @@ class Sentence < ApplicationRecord
 
 	validates :ja, presence: true
 	validates :ch, presence: true
+	validates :fold_id, presence: true
 
 	def like_user(user_id)
 		likes.find_by(user_id: user_id)
 	end
-
 end

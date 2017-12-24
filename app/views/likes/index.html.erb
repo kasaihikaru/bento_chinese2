@@ -21,8 +21,6 @@
         </a>
         <div id="pop_folds_wrapper" style="display: none">
           <div id="folds_list">
-            <%= render :partial => 'svg/like_small' %>
-            お気に入り
             <%= render :partial => 'folds/folds_list', :locals=>{myfolds: @myfolds} %>
           </div>
           <div class="create-fold">

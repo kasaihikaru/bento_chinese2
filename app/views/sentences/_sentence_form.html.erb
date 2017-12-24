@@ -1,49 +1,59 @@
-<%= form_for sentence, method: :post do |s| %>
-<!-- 	<%= s.hidden_field :fold_id ,value: fold_id %> -->
+<% if myfolds.empty?  %>
+	まずは文章を保存するための、フォルダを作成してみましょう！
+	<%= form_for @fold, url: folds_path, method: :post, remote: true do |f| %>
+		<%= f.text_field :name, placeholder: "新しいフォルダ", class: "", :required => true %>
+		<%= f.submit "追加", class: "", id: "" %>
+	<% end %>
 
-<!-- リダイレクト先flg -->
-	<%= s.hidden_field :redirect_id ,value: @redirect_id %>
-	<%= s.hidden_field :redirect_type ,value: @redirect_type %>
+<% else %>
+	<%= form_for sentence, method: :post do |s| %>
 
-	<div class="s-c-s">
-		<%= s.text_area :ja, placeholder: "日本語文を書く", class: "s-c-ja", :required => true %>
-		<%= s.text_area :ch, placeholder: "中国語文を書く", id: "chsentence", class: "s-c-ch", :required => true %>
-	</div>
-	<div id="auto-words" class="">
-		<button type="button" class="btn btn-default">
-			中国語の単語を抜き出す
-	</button>
-	<br><br>
-	</div>
+	<!-- リダイレクト先flg -->
+		<%= s.hidden_field :redirect_id ,value: @redirect_id %>
+		<%= s.hidden_field :redirect_type ,value: @redirect_type %>
+
+		<div class="s-c-s">
+			<%= s.text_area :ja, placeholder: "日本語文を書く", class: "s-c-ja", :required => true %>
+			<%= s.text_area :ch, placeholder: "中国語文を書く", id: "chsentence", class: "s-c-ch", :required => true %>
+		</div>
+		<div id="auto-words" class="">
+			<button type="button" class="btn btn-default">
+				中国語の単語を抜き出す
+		</button>
+		<br><br>
+		</div>
 
 
-<!-- 単語フォーム -->
-	<div class="form-group">
-		<%= render :partial => "sentences/words_form", :locals=>{:s=>s} %>
-			<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#more-words">
-				もっと単語を入れる
-			</button>
-		<div id="more-words" class="collapse">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
-					<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
-					<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
-					<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
-					<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
-					<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
-					<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+	<!-- 単語フォーム -->
+		<div class="form-group">
+			<%= render :partial => "sentences/words_form", :locals=>{:s=>s} %>
+				<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#more-words">
+					もっと単語を入れる
+				</button>
+			<div id="more-words" class="collapse">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+						<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+						<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+						<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+						<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+						<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+						<%= render :partial => "folds/words_form", :locals=>{:s=>s} %>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 
-<!-- フォルダ選択 -->
-	<hr>
-	<div class="myfolds">
-		<%= render :partial => "folds/folds_list_for_form", :locals=>{:s=>s, :myfolds=>myfolds} %>
-	</div>
-	<hr>
-	<%= s.submit "作成", class: "", id: "sentence-create-button" %>
+	<!-- フォルダ選択 -->
+		<hr>
+		<div class="myfolds">
+			<%= render :partial => "folds/folds_list_for_form", :locals=>{:s=>s, :myfolds=>myfolds} %>
+		</div>
+		<hr>
+		<%= s.submit "作成", class: "", id: "sentence-create-button" %>
+	<% end %>
+
+
 <% end %>

@@ -1,3 +1,7 @@
+<%= link_to user_likes_path(current_user) do %>
+	<%= render :partial => 'svg/not_like_small' %>
+	お気に入り
+<% end %>
 <% myfolds.each do |fold| %>
 	<div class="folds-list">
 		<% if current_page?(fold)  %>

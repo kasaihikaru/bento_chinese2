@@ -1,7 +1,7 @@
 class SentencesController < ApplicationController
 
 	def index
-		@sentences = Sentence.includes(:user).order("created_at DESC").where(hide: 0).page(params[:page]).per(20)
+		@sentences = Sentence.includes(:user).order("created_at DESC").page(params[:page]).per(20)
 		if user_signed_in?
 			@myfolds = current_user.folds
 		end
@@ -60,7 +60,7 @@ class SentencesController < ApplicationController
 
 
 
-###############覚えたボタン、全文章表示ボタン#############
+###############覚えたボタン、全文章表示ボタン、コピーボタン#############
 	def memorized
 		sentence = Sentence.find(memorized_params)
 		sentence.update( hide: 1 )
@@ -76,6 +76,23 @@ class SentencesController < ApplicationController
 
 		redirect_to fold_path(current_fold.id)
 	end
+
+def copy
+	sentence_id = params[:sentence]
+	fold_id = params[:fold]
+	user_id = Fold.find(fold_id).user_id
+
+	ori_sen = Sentence.find(sentence_id)
+
+	Sentence.create("ja"=>ori_sen[:ja], "ch"=>ori_sen[:ch], "pin"=>ori_sen[:pin],"hira"=>ori_sen[:hira], "fold_id"=>fold_id, "user_id"=>user_id)
+
+	just_created_sentence = Sentence.last
+	words = ori_sen.words
+	words.each do |w|
+		Word.create("ja"=>w[:ja], "ch"=>w[:ch], "pin"=>w[:pin], "sentence_id"=>just_created_sentence.id)
+	end
+
+end
 
 
 
