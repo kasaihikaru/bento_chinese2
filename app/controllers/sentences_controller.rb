@@ -38,8 +38,10 @@ class SentencesController < ApplicationController
 			redirect_to user_path(params[:sentence]["redirect_id"])
 		elsif redirect_flg[:redirect_type] == "2" then
 			redirect_to user_likes_path(params[:sentence]["redirect_id"])
-		else
+		elsif redirect_flg[:redirect_type] == "3" then
 			redirect_to fold_path(params[:sentence]["redirect_id"])
+		else
+			redirect_to root_path
 		end
 	end
 
@@ -47,15 +49,21 @@ class SentencesController < ApplicationController
 
 
 	def edit
-		
+		@original_sentence = Sentence.find(params[:id])
+		@original_sentence.words.build
 	end
 
 	def destroy
-
+		binding.pry
 	end
 
 	def update
-
+		Sentence.update(id:update_params, user_id:update_sentence_params[:user_id], fold_id:update_sentence_params[:fold_id], ja:update_sentence_params[:ja], ch:update_sentence_params[:ch], pin:update_sentence_params[:pin] )
+		words = words_params
+		words.each do |w|
+			Word.create("ja"=>w[:ja], "ch"=>w[:ch], "pin"=>w[:pin], "sentence_id"=>update_params)
+		end
+		redirect_to fold_path(sentence_params[:fold_id])
 	end
 
 
@@ -145,6 +153,23 @@ end
 		return array
 	end
 
+
+	def update_sentence_params
+		pin = PinYin.of_string(params[:sentence][:ch], :unicode)
+		if pin.count == 1
+			pinyin = pin.first
+		else
+			pinyin = ""
+			pin.each do |p|
+				pinyin += "#{p} "
+			end
+		end
+		params.require(:sentence).permit(:fold_id, :ja, :ch).merge(user_id: current_user.id, pin: pinyin)
+	end
+
+	def update_params
+		params.require(:id)
+	end
 
 
 	def memorized_params
