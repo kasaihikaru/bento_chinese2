@@ -20,10 +20,26 @@ set :ssh_options, auth_methods: ['publickey'],
 set :unicorn_pid, -> { "/home/ec2-user/work/bento_chinese2/shared/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "/home/ec2-user/work/bento_chinese2/current/config/unicorn.rb" }
 
+
+# SSHKit.conifg seedのため。
+SSHKit.config.command_map[:rake] = 'bundle exec rake'
+
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
+  end
+
+  #seedファイルを入れる
+  desc 'db_seed must be run only one time right after the first deploy'
+  task :db_seed do
+    on roles(:db) do |host|
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'db:seed'
+        end
+      end
+    end
   end
 end
 
