@@ -54,7 +54,7 @@ class SentencesController < ApplicationController
 	end
 
 	def destroy
-		binding.pry
+
 	end
 
 	def update
