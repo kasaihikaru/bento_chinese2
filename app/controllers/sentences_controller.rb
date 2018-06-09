@@ -58,10 +58,18 @@ class SentencesController < ApplicationController
 	end
 
 	def update
-		Sentence.update(id:update_params, user_id:update_sentence_params[:user_id], fold_id:update_sentence_params[:fold_id], ja:update_sentence_params[:ja], ch:update_sentence_params[:ch], pin:update_sentence_params[:pin] )
+		original_sentence = Sentence.find(update_params)
+
+		original_sentence.update(user_id:update_sentence_params[:user_id], fold_id:update_sentence_params[:fold_id], ja:update_sentence_params[:ja], ch:update_sentence_params[:ch], pin:update_sentence_params[:pin] )
 		words = words_params
 		words.each do |w|
-			Word.create("ja"=>w[:ja], "ch"=>w[:ch], "pin"=>w[:pin], "sentence_id"=>update_params)
+			# binding.pry
+			if w[:id].present?
+				original_word = Word.find(w[:id])
+				original_word.update("ja"=>w[:ja], "ch"=>w[:ch], "pin"=>w[:pin], "sentence_id"=>update_params)
+			else
+				Word.create(ja: w[:ja], ch: w[:ch], sentence_id: w[:sentence_id], pin: w[:pin])
+			end
 		end
 		redirect_to fold_path(sentence_params[:fold_id])
 	end

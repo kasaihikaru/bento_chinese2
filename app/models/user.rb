@@ -16,4 +16,11 @@ class User < ApplicationRecord
 		current_user.likes.where(sentence_id: sentence_id).select(:id)
 	end
 
+
+  # @return [Boolean] cookieを使いログイン情報を保持するかどうか -> ここではtrue
+  # つけておくと、ブラウザ閉じてもログイン保持できる
+  def remember_me
+    true
+  end
+
 end

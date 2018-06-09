@@ -1,6 +1,4 @@
-
-まだ文章を編集する機能がありません。泣
-<hr>
+<br>
 <%= form_for @original_sentence, method: :patch do |s| %>
 
 <!-- リダイレクト先flg -->
@@ -13,7 +11,7 @@
 		<%= s.text_area :ja, placeholder: "日本語文", class: "s-c-ja", :required => true %>
 		<%= s.text_area :ch, placeholder: "中国語文", id: "", class: "s-c-ch", :required => true %>
 	</div>
-<!-- 	<div id="auto-words" class="">
+<!-- <div id="auto-words" class="">
 		<button type="button" class="btn btn-default">
 			中国語の単語を抜き出す
 	</button>
@@ -33,26 +31,7 @@
   	<% end %>
 
 
-<!-- 		<%= render :partial => "sentences/words_form_for_edit", :locals=>{:s=>s} %>
-			<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#more-words">
-				もっと単語を入れる
-			</button>
-		<div id="more-words" class="collapse">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<%= render :partial => "sentences/words_form_for_edit", :locals=>{:s=>s} %>
-					<%= render :partial => "sentences/words_form_for_edit", :locals=>{:s=>s} %>
-					<%= render :partial => "sentences/words_form_for_edit", :locals=>{:s=>s} %>
-					<%= render :partial => "sentences/words_form_for_edit", :locals=>{:s=>s} %>
-					<%= render :partial => "sentences/words_form_for_edit", :locals=>{:s=>s} %>
-					<%= render :partial => "sentences/words_form_for_edit", :locals=>{:s=>s} %>
-					<%= render :partial => "sentences/words_form_for_edit", :locals=>{:s=>s} %>
-				</div>
-			</div>
-		</div> -->
-	</div>
-
-<!-- 	<%= s.submit "作成", class: "", id: "sentence-create-button" %> -->
+<%= s.submit "更新", class: "", id: "sentence-create-button" %>
 <% end %>
 
 
