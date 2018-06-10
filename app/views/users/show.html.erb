@@ -45,21 +45,19 @@
     <!-- ########  フォルダ一覧 ########-->
       <div class="profile">
         <div class="row">
-          <div class="profile-left col-xs-3 col-sm-3 col-md-3">
-            <% @folds.each do |fold| %>
-              <div class="folds-list">
-                <% if current_page?(fold)  %>
-                  <%= render :partial => 'svg/fold_open' %>
-                  <%= fold.name %>
-                <% else %>
-                  <a href="/folds/<%= fold.id %>">
-                  <%= render :partial => 'svg/fold' %>
-                  <%= fold.name %>
-                  </a>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <% @folds.each do |fold| %>
+            <div class="folds-list">
+              <% if current_page?(fold)  %>
+                <%= render :partial => 'svg/fold_open' %>
+                <%= fold.name %>
+              <% else %>
+                <a href="/folds/<%= fold.id %>">
+                <%= render :partial => 'svg/fold' %>
+                <%= fold.name %>
+                </a>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
 
