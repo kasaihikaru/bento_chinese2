@@ -46,7 +46,7 @@
       <div class="profile">
         <div class="row">
           <% @folds.each do |fold| %>
-            <div class="folds-list">
+            <div class="folds-list col-xs-6" >
               <% if current_page?(fold)  %>
                 <%= render :partial => 'svg/fold_open' %>
                 <%= fold.name %>
