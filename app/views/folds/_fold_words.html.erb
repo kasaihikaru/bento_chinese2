@@ -1,0 +1,28 @@
+<br><br>
+<%= form_tag("/words_hide", method: "patch") do %>
+	<table class="table table-bordered table-responsive-sm">
+		<thead>
+			<tr>
+				<th scope="col" >日本語</th>
+				<th scope="col">中国語</th>
+				<th scope="col">ピンイン</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% sentences.each do |sentence| %>
+				<% sentence.words.each do |word| %>
+					<tr>
+						<th scope="col"><%= word.ja %></th>
+						<th scope="col"><%= word.ch %></th>
+						<th scope="col"><%= word.pin %></th>
+						<th scope="col">
+							<%= check_box_tag "word[#{word.id}]", value: word.hide, id: "word_#{word.id}" %>
+						</th>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+	<%= submit_tag("暗記状態を保存") %>
+<% end %>

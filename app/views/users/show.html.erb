@@ -45,19 +45,42 @@
     <!-- ########  フォルダ一覧 ########-->
       <div class="profile">
         <div class="row">
-          <% @folds.each do |fold| %>
-            <div class="folds-list col-xs-6" >
-              <% if current_page?(fold)  %>
-                <%= render :partial => 'svg/fold_open' %>
-                <%= fold.name %>
-              <% else %>
-                <a href="/folds/<%= fold.id %>">
-                <%= render :partial => 'svg/fold' %>
-                <%= fold.name %>
-                </a>
+          <div class="col-xs-6" >
+            <p>文章から勉強</p>
+            <div class="row">
+              <% @folds.each do |fold| %>
+                <div class="folds-list col-xs-12" >
+                  <% if current_page?(fold)  %>
+                    <%= render :partial => 'svg/fold_open' %>
+                    <%= fold.name %>
+                  <% else %>
+                    <a href="/folds/<%= fold.id %>">
+                    <%= render :partial => 'svg/fold' %>
+                    <%= fold.name %>
+                    </a>
+                  <% end %>
+                </div>
               <% end %>
             </div>
-          <% end %>
+          </div>
+          <div class="col-xs-6" >
+            <p>単語を勉強</p>
+            <div class="row">
+              <% @folds.each do |fold| %>
+                <div class="folds-list col-xs-12" >
+                  <% if current_page?(fold)  %>
+                    <%= render :partial => 'svg/fold_open' %>
+                    <%= fold.name %>
+                  <% else %>
+                    <a href="/folds/<%= fold.id %>/words">
+                    <%= render :partial => 'svg/fold' %>
+                    <%= fold.name %>
+                    </a>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
 

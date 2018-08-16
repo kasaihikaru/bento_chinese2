@@ -15,7 +15,12 @@ Rails.application.routes.draw do
 		resources :likes, only: [:create, :destroy]
 	end
 
-	resources :folds, only: [:show, :create, :edit, :destroy]  #各foldページ、編集ページ
+	resources :folds, only: [:show, :create, :edit, :destroy] do
+		# resources :words, only: [:index]
+		get 'words'
+	end
+
+	patch '/words_hide'      => 'words#hide'
 
 	resources :abouts, only: [:index] #サービス説明ページ
 
