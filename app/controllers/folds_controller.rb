@@ -9,7 +9,7 @@ class FoldsController < ApplicationController
 			@current_fold_user_id = @current_fold.user_id
 		@user = User.find(@current_fold_user_id)
 		@fold = Fold.new
-		@myfolds = @user.folds
+		@myfolds = @user.folds.active
 
 		@foldsentences = @current_fold.sentences.where(hide: 0).order("created_at DESC").page(params[:page]).per(20)
 
@@ -19,7 +19,7 @@ class FoldsController < ApplicationController
 
 	def create
 		Fold.create(create_params)
-		@myfolds = current_user.folds
+		@myfolds = current_user.folds.active
 		@sentence = Sentence.new
 		@sentence.words.build
 		@sentences = Sentence.includes(:user).order("created_at DESC").page(params[:page]).per(20)
@@ -42,7 +42,7 @@ class FoldsController < ApplicationController
 		@current_fold_user_id = @current_fold.user_id
 		@user = User.find(@current_fold_user_id)
 		@fold = Fold.new
-		@myfolds = @user.folds
+		@myfolds = @user.folds.active
 
 		@foldsentences = @current_fold.sentences.order("created_at DESC").includes(:words)
 

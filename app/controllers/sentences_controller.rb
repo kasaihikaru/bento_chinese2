@@ -3,7 +3,7 @@ class SentencesController < ApplicationController
 	def index
 		@sentences = Sentence.includes(:user).order("created_at DESC").page(params[:page]).per(20)
 		if user_signed_in?
-			@myfolds = current_user.folds
+			@myfolds = current_user.folds.active
 		end
 
 		@fold = Fold.new
@@ -28,7 +28,7 @@ class SentencesController < ApplicationController
 		@sentence = Sentence.new
 		@sentence.words.build
 		if user_signed_in?
-			@myfolds = current_user.folds
+			@myfolds = current_user.folds.active
 		end
 
 		redirect_flg = redirect_params

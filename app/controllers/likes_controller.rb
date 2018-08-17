@@ -14,10 +14,10 @@ class LikesController < ApplicationController
     @sentence = Sentence.new
     @sentence.words.build
     @fold = Fold.new
-    @folds = @user.folds
+    @folds = @user.folds.active
 
     if user_signed_in?
-      @myfolds = current_user.folds
+      @myfolds = current_user.folds.active
     end
 
     @redirect_type = 2
@@ -27,7 +27,7 @@ class LikesController < ApplicationController
   def create
     like = Like.create(create_params)
     @sentence = Sentence.includes(:user).find(params[:sentence_id])
-    @myfolds = current_user.folds
+    @myfolds = current_user.folds.active
   end
 
   def destroy

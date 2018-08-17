@@ -7,10 +7,10 @@ class UsersController < ApplicationController
 		@sentence = Sentence.new
 		@sentence.words.build
 		@fold = Fold.new
-		@folds = @user.folds
+		@folds = @user.folds.active
 
 		if user_signed_in?
-			@myfolds = current_user.folds
+			@myfolds = current_user.folds.active
 		end
 
 		@redirect_type = 1
