@@ -1,13 +1,18 @@
 class WordsController < ApplicationController
 
 	def hide
-		binding.pry
-		# Word.update(hide: hide)
+		@word = Word.find(hide_params)
+		@word.update(hide: 1)
+	end
+
+	def show
+		@word = Word.find(hide_params)
+		@word.update(hide: 0)
 	end
 
 	private
-	def hide_params
-		
-	end
+  def hide_params
+    params[:id]
+  end
 
 end

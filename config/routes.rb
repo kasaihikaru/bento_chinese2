@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 		get 'words'
 	end
 
-	patch '/words_hide'      => 'words#hide'
+	put '/words_hide'      => 'words#hide'
+	put '/words_show'      => 'words#show'
 
 	resources :abouts, only: [:index] #サービス説明ページ
 

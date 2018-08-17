@@ -57,6 +57,28 @@ body{
 	margin: 0;
 }
 
+.grey-col{
+	background-color: grey;
+}
+
+.padding0{
+	padding: 0;
+}
+
+// button
+.word_hide_btn{
+		color: black;
+    display: inline-block;
+    text-decoration: none;
+    color: rgba(152, 152, 152, 0.43);/*アイコン色*/
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    background-image: -webkit-linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
+    background-image: linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
+}
 
 
 //--------------- 対策 ----------------//
