@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 		@fold = Fold.new
 		@folds = @user.folds.active
 
+		# @wordfold = WordFold.new
+
 		if user_signed_in?
 			@myfolds = current_user.folds.active
 		end

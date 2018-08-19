@@ -21,6 +21,11 @@ Rails.application.routes.draw do
 		get 'words_c_to_j'
 	end
 
+	# resources :word_folds, only: [:create, :edit] do
+	# 	get 'j_to_c'
+	# 	get 'c_to_j'
+	# end
+
 	put '/words_hide'      => 'words#hide'
 	put '/words_show'      => 'words#show'
 	put '/words_hide_c_to_j'      => 'words#hide_c_to_j'
