@@ -4,10 +4,10 @@
       <div id="fold_posts">
         <br><br>
         <div class="right-align">
-          <%= link_to "中国語から勉強", fold_words_c_to_j_path(@current_fold) %>
+          <%= link_to "日本語から勉強", fold_words_path(@current_fold) %>
         </div>
         <br>
-        <%= render :partial => 'folds/fold_words', :locals=>{ sentences: @foldsentences, myfolds: @myfolds} %>
+        <%= render :partial => 'folds/fold_words_c_to_j', :locals=>{ sentences: @foldsentences, myfolds: @myfolds} %>
       </div>
     </div>
   </div>

@@ -18,10 +18,14 @@ Rails.application.routes.draw do
 	resources :folds, only: [:show, :create, :edit, :destroy] do
 		# resources :words, only: [:index]
 		get 'words'
+		get 'words_c_to_j'
 	end
 
 	put '/words_hide'      => 'words#hide'
 	put '/words_show'      => 'words#show'
+	put '/words_hide_c_to_j'      => 'words#hide_c_to_j'
+	put '/words_show_c_to_j'      => 'words#show_c_to_j'
+
 
 	resources :abouts, only: [:index] #サービス説明ページ
 

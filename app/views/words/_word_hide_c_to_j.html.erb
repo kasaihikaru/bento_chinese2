@@ -1,0 +1,19 @@
+<% if word.hide_c_to_j == false %>
+  <th><%= word.ch %></th>
+  <th><%= word.pin %></th>
+  <th><%= word.ja %></th>
+  <th class="padding0" style="padding: 0;">
+    <%= link_to words_hide_c_to_j_path(id: word.id), class: "word_hide_btn", method: :put, remote: true do %>
+      ✔︎
+    <% end %>
+  </th>
+<% else %>
+  <th class="grey-col"><%= word.ch %></th>
+  <th class="grey-col"><%= word.pin %></th>
+  <th class="grey-col"><%= word.ja %></th>
+  <th class="padding0" style="padding: 0;">
+    <%= link_to words_show_c_to_j_path(id: word.id), class: "word_hide_btn", method: :put, remote: true do %>
+      ×
+    <% end %>
+  </th>
+<% end %>

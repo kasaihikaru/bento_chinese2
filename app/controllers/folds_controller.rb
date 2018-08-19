@@ -50,6 +50,23 @@ class FoldsController < ApplicationController
 		@redirect_id = params[:id]
 	end
 
+	def words_c_to_j
+		@sentence = Sentence.new
+		@fold_id = params[:id]
+		@sentence.words.build
+
+		@current_fold = Fold.find(params[:fold_id])
+		@current_fold_user_id = @current_fold.user_id
+		@user = User.find(@current_fold_user_id)
+		@fold = Fold.new
+		@myfolds = @user.folds.active
+
+		@foldsentences = @current_fold.sentences.order("created_at DESC").includes(:words)
+
+		@redirect_type = 3
+		@redirect_id = params[:id]
+	end
+
 
 ###############ストロングパラメーター#############
 	private
