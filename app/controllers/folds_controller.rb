@@ -5,8 +5,8 @@ class FoldsController < ApplicationController
 		@fold_id = params[:id]
 		@sentence.words.build
 
-			@current_fold = Fold.find(params[:id])
-			@current_fold_user_id = @current_fold.user_id
+		@current_fold = Fold.find(params[:id])
+		@current_fold_user_id = @current_fold.user_id
 		@user = User.find(@current_fold_user_id)
 		@fold = Fold.new
 		@myfolds = @user.folds.active

@@ -1,5 +1,7 @@
 <br>
-<p style="text-align: center;"><strong><%= @current_fold.name %></strong></p>
+<p style="text-align: center;">
+  <strong><%= link_to @current_fold.name, fold_path(@current_fold) %></strong>
+</p>
 
 <div class="container">
   <div class="row">

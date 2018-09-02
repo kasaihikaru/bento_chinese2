@@ -1,6 +1,19 @@
-<br>
-<p style="text-align: center;"><strong><%= @current_fold.name %></strong></p>
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+      <br>
+      <p style="text-align: center;">
+        <strong><%= @current_fold.name %></strong>
+      </p>
+      <p class="right-align">
+        <%= link_to "単語を勉強(日→中)", fold_words_path(@current_fold) %>
+      </p>
+      <p class="right-align">
+        <%= link_to "単語を勉強(中→日)", fold_words_c_to_j_path(@current_fold) %>
+      </p>
+      <br>
+  </div>
+</div>
 
 <div class="container">
   <div class="row">
