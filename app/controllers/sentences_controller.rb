@@ -70,6 +70,22 @@ class SentencesController < ApplicationController
 				Word.create(ja: w[:ja], ch: w[:ch], sentence_id: w[:sentence_id], pin: w[:pin])
 			end
 		end
+
+		update_new_words_params.each do |w|
+			if w[:ja].present? && w[:ch].present?
+				pin = PinYin.of_string(w[:ch], :unicode)
+				if pin.count == 1
+					pinyin = pin.first
+				else
+					pinyin = ""
+					pin.each do |p|
+						pinyin += "#{p} "
+					end
+				end
+				Word.create(ja: w[:ja], ch: w[:ch], sentence_id: original_sentence.id, pin: pinyin)
+			end
+		end
+
 		redirect_to fold_path(sentence_params[:fold_id])
 	end
 
@@ -141,10 +157,10 @@ end
 			if value["ja"].present? && value["ch"].present?
 					value[:sentence_id] = id
 
-					pin = PinYin.of_string(value[:ch], :unicode)
-						if pin.count == 1
-							pinyin = pin.first
-						else
+				pin = PinYin.of_string(value[:ch], :unicode)
+				if pin.count == 1
+					pinyin = pin.first
+				else
 					pinyin = ""
 					pin.each do |p|
 						pinyin += "#{p} "
@@ -203,6 +219,10 @@ end
 			end
 		end
 		return array
+	end
+
+	def update_new_words_params
+		params.require(:new_words)
 	end
 
 

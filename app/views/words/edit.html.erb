@@ -1,0 +1,10 @@
+<%= form_for @word, method: :patch do |w| %>
+    <ul class="w-c">
+		<%= w.text_field :ja, placeholder: "日本語", class: "w-c-ja", :required => true %>
+		<%= w.text_field :ch, placeholder: "中国語", class: "w-c-ch", :required => true %>
+	</div>
+
+    <input name="redirect_flg" type="hidden" value="<%=@redirect_flg %>">
+
+    <%= w.submit "更新", class: "" %>
+<% end %>

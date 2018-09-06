@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 		get 'words_c_to_j'
 	end
 
+	resources :words, only: [:edit, :update]
+
 	# resources :word_folds, only: [:create, :edit] do
 	# 	get 'j_to_c'
 	# 	get 'c_to_j'

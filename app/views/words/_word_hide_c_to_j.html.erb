@@ -1,4 +1,5 @@
 <% if word.hide_c_to_j == false %>
+  <th><%= link_to "□", edit_word_path(word.id, redirect_flg: 1) %></th>
   <th><%= word.ch %></th>
   <th><%= word.pin %></th>
   <th><%= word.ja %></th>
@@ -8,6 +9,7 @@
     <% end %>
   </th>
 <% else %>
+  <th class="grey-col"><%= link_to "□", edit_word_path(word.id, redirect_flg: 1) %></th>
   <th class="grey-col"><%= word.ch %></th>
   <th class="grey-col"><%= word.pin %></th>
   <th class="grey-col"><%= word.ja %></th>
